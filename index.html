@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>エス通WEB 特設サイト＋記事タイアップご提案｜エステサロン向け決済・分割導入｜株式会社ミューチュアルトラスト 御中</title>
+<style>
+  :root{
+    --page:#F4F7FB;--ink:#2B2F38;--muted:#6E7482;--navy:#1F4A8A;--navy-deep:#163763;--navy-soft:#3C69A8;
+    --org:#FF6900;--org-deep:#D95A00;--org-pale:#FFF3E9;--pale:#EEF3FA;--line:#D9E2F0;
+    --gap:#FF6900;--thin:#8FB0DC;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;background:#0F1B30;overflow:hidden;}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);word-break:auto-phrase;line-break:strict;-webkit-font-smoothing:antialiased;}
+  img{display:block;max-width:100%;}
+  h1,h2,h3,h4,.lead{text-wrap:balance;margin:0;}
+  p,li,td{text-wrap:pretty;}
+  .nw{white-space:nowrap;}
+
+  /* ステージ：1920x1080固定を画面にフィット */
+  #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center;}
+  .slide{position:absolute;inset:0;background:#fff;display:none;flex-direction:column;overflow:hidden;font-size:26px;line-height:1.7;}
+  .slide.on{display:flex;}
+  .sh{display:flex;align-items:center;gap:22px;padding:44px 80px 18px;}
+  .sh .no{background:var(--navy);color:#fff;font-size:20px;font-weight:700;border-radius:999px;padding:4px 20px;letter-spacing:.06em;}
+  .sh h2{font-size:46px;color:var(--navy-deep);line-height:1.35;}
+  .sb{flex:1;padding:6px 80px 0;min-height:0;}
+  .sf{display:flex;justify-content:space-between;align-items:center;padding:12px 80px 26px;font-size:18px;color:var(--muted);border-top:1px solid var(--line);margin:0 80px;padding-left:0;padding-right:0;}
+  .lead{font-size:28px;color:var(--muted);margin:0 0 20px;line-height:1.7;}
+  .lead b,.disclaimer b{color:var(--navy-deep);}
+  .lab{font-size:22px;font-weight:700;color:var(--navy-soft);letter-spacing:.06em;margin:0 0 10px;}
+  .disclaimer{font-size:19px;color:var(--muted);background:var(--pale);border-left:6px solid var(--navy);padding:12px 20px;border-radius:8px;line-height:1.65;margin-top:14px;}
+  .credit{font-size:18px;color:var(--muted);margin-top:8px;}
+  .grid{display:grid;gap:22px;}
+  .card{background:var(--pale);border:1px solid var(--line);border-radius:16px;padding:20px 26px;font-size:24px;line-height:1.65;}
+  .card h4{font-size:26px;color:var(--navy);margin:0 0 6px;}
+  .card.org{background:var(--org-pale);border-color:#FFD2B0;}
+  .card ul{margin:0;padding-left:26px;}
+  .tag{display:inline-block;font-size:17px;font-weight:700;border-radius:8px;padding:0 10px;margin-left:10px;vertical-align:3px;white-space:nowrap;}
+  .tag.opt{background:#fff;color:var(--org-deep);border:1.5px solid var(--org);}
+
+  /* 表紙 */
+  .cover{background:linear-gradient(150deg,#fff 0%,var(--pale) 70%,#E3ECF8 100%);flex-direction:row;}
+  .cover.on{display:flex;}
+  .cover .txt{flex:1.15;padding:90px 70px 70px 100px;display:flex;flex-direction:column;justify-content:center;}
+  .cover .mark{font-size:20px;letter-spacing:.3em;color:var(--muted);margin-bottom:22px;}
+  .cover .eyebrow{align-self:flex-start;font-size:22px;letter-spacing:.14em;color:var(--navy);border:2px solid var(--navy-soft);border-radius:999px;padding:6px 26px;margin-bottom:26px;}
+  .cover h1{font-size:60px;line-height:1.5;color:var(--navy-deep);margin:0 0 20px;}
+  .cover h1 span{color:var(--org);}
+  .cover .sub{font-size:26px;color:var(--muted);margin:0 0 40px;}
+  .cover .meta{display:grid;grid-template-columns:1fr 1fr;gap:14px 36px;background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:20px;padding:22px 30px;}
+  .cover .meta .k{font-size:18px;color:var(--muted);}
+  .cover .meta .v{font-size:24px;font-weight:700;line-height:1.5;}
+  .cover .brand{margin-top:26px;font-size:22px;color:var(--muted);}
+  .cover .ph{flex:1;background:#fff;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:22px;padding:60px 56px;}
+  .cover .ph .logo{width:360px;margin:0 auto;}
+  .cover .ph .hero{width:100%;height:auto;border:1px solid var(--line);border-radius:14px;}
+  .cover .ph .cap{font-size:17px;color:var(--muted);text-align:right;}
+
+  /* 現状 */
+  .fnd{display:grid;grid-template-columns:54px 1fr;gap:18px;padding:14px 0;border-bottom:2px dashed var(--line);font-size:23px;line-height:1.6;}
+  .fnd:last-child{border-bottom:none;}
+  .fnd .n{width:48px;height:48px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:24px;display:flex;align-items:center;justify-content:center;}
+  .fnd b{display:block;color:var(--navy);font-size:26px;}
+  .fnd .src{color:var(--muted);font-size:17px;}
+
+  /* 導線 */
+  .flow{display:grid;grid-template-columns:1fr 50px 1.2fr 50px 1fr 50px .85fr;align-items:stretch;}
+  .nd{border-radius:20px;overflow:hidden;border:2px solid var(--line);background:#fff;display:flex;flex-direction:column;}
+  .nd .h{padding:14px 20px;color:#fff;font-size:20px;background:var(--navy-soft);}
+  .nd .h b{display:block;font-size:26px;margin-top:2px;}
+  .nd .im{height:260px;background:var(--pale);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);padding:10px;}
+  .nd .im img{max-height:240px;max-width:100%;width:auto;height:auto;}
+  .nd .t{padding:14px 20px;font-size:21px;line-height:1.6;}
+  .nd.main{border:4px solid var(--org);} .nd.main .h{background:var(--org);}
+  .nd.goal .h{background:var(--navy);}
+  .ar{display:flex;align-items:center;justify-content:center;color:var(--org);font-size:46px;font-weight:700;}
+  .under{margin-top:18px;background:var(--pale);border-radius:14px;padding:12px 20px;font-size:22px;color:var(--navy-soft);text-align:center;}
+
+  /* 設計 */
+  .wf{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .blk{display:grid;grid-template-columns:96px 1fr;gap:18px;background:#fff;border:2px solid var(--line);border-radius:16px;padding:16px 20px;font-size:22px;line-height:1.55;align-items:center;}
+  .blk .i{font-size:22px;font-weight:700;color:#fff;background:var(--navy);border-radius:12px;display:flex;align-items:center;justify-content:center;height:64px;}
+  .blk b{display:block;color:var(--navy);font-size:25px;}
+  .blk.key{border-color:var(--org);background:var(--org-pale);} .blk.key .i{background:var(--org);}
+  .aio{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .aio div{background:var(--navy);color:#fff;border-radius:18px;padding:24px 26px;font-size:23px;line-height:1.6;}
+  .aio div b{display:block;font-size:27px;margin-bottom:6px;color:#FFD2B0;}
+
+  /* KW */
+  .rb{display:grid;grid-template-columns:600px 1fr 150px 90px;gap:16px;align-items:center;font-size:23px;padding:8px 0;border-bottom:1px solid #E6ECF4;}
+  .rb .tr{height:22px;background:var(--page);border-radius:11px;position:relative;}
+  .rb .sg{position:absolute;left:0;top:0;height:22px;border-radius:11px;}
+  .sg.gap{background:var(--gap);} .sg.thin{background:var(--thin);}
+  .rb .val{text-align:right;color:var(--muted);font-size:21px;white-space:nowrap;}
+  .rb .st{font-size:19px;text-align:center;border-radius:8px;padding:2px 0;font-weight:700;}
+  .st.gap{background:var(--org-pale);color:var(--org-deep);} .st.thin{background:var(--pale);color:var(--navy-soft);}
+  .rb.head{font-size:19px;color:var(--muted);border-bottom:2px solid var(--line);}
+  .rb .kw small{display:block;color:var(--muted);font-size:17px;line-height:1.4;}
+  .legend{display:flex;gap:30px;font-size:19px;color:var(--muted);margin-top:10px;}
+  .legend i{display:inline-block;width:20px;height:20px;border-radius:5px;vertical-align:-3px;margin-right:8px;}
+  .ins{border-radius:16px;padding:18px 24px;font-size:23px;line-height:1.6;margin-bottom:16px;}
+  .ins b{display:block;font-size:26px;margin-bottom:4px;}
+  .ins.a{background:#F1F2F4;color:#555B66;}
+  .ins.b{background:var(--org-pale);border:3px solid var(--org);} .ins.b b{color:var(--org-deep);}
+  .ins.c{background:var(--navy);color:#fff;}
+  .fun{display:flex;gap:16px;align-items:stretch;}
+  .fun .fb{flex:1;background:var(--pale);border:2px solid var(--line);border-radius:18px;padding:22px 16px;text-align:center;}
+  .fun .fb .l{font-size:21px;color:var(--muted);}
+  .fun .fb .v{font-size:44px;font-weight:700;color:var(--navy);line-height:1.3;margin:6px 0;}
+  .fun .fb .f{font-size:19px;color:var(--muted);}
+  .fun .ar{font-size:44px;}
+
+  /* 記事 */
+  .ah{background:var(--navy);color:#fff;border-radius:18px 18px 0 0;padding:18px 28px;display:flex;gap:22px;align-items:center;}
+  .ah .id{font-size:22px;font-weight:700;line-height:1.3;border:2px solid rgba(255,255,255,.65);border-radius:12px;padding:8px 14px;white-space:nowrap;text-align:center;}
+  .ah .tg{font-size:17px;letter-spacing:.12em;opacity:.85;}
+  .ah h3{font-size:29px;line-height:1.5;margin-top:2px;}
+  .ab{border:2px solid var(--line);border-top:none;border-radius:0 0 18px 18px;padding:16px 28px;display:grid;grid-template-columns:1.45fr 1fr;gap:34px;font-size:21px;}
+  .toc{margin:0;padding:0;list-style:none;counter-reset:h;}
+  .toc li{position:relative;padding:7px 0 7px 84px;border-bottom:2px dashed var(--line);line-height:1.5;}
+  .toc li:last-child{border-bottom:none;}
+  .toc li::before{counter-increment:h;content:"H2-" counter(h);position:absolute;left:0;top:10px;font-size:17px;font-weight:700;color:var(--navy-soft);}
+  .toc li b{color:var(--navy);display:block;font-size:22px;}
+  .toc li span{color:var(--muted);font-size:19px;}
+  .toc li.key{background:var(--org-pale);border-radius:10px;border-bottom:none;padding-right:10px;}
+  .mb{background:var(--pale);border-radius:14px;padding:12px 18px;margin-bottom:12px;font-size:20px;line-height:1.55;}
+  .mb .mk{font-size:17px;font-weight:700;color:var(--navy-soft);letter-spacing:.06em;margin-bottom:4px;}
+  .kwt{display:inline-block;background:#fff;border:2px solid var(--thin);border-radius:999px;padding:0 14px;margin:3px 6px 3px 0;font-size:19px;color:var(--navy);}
+
+  table{width:100%;border-collapse:collapse;font-size:23px;}
+  th,td{border:2px solid var(--line);padding:12px 16px;text-align:left;vertical-align:top;line-height:1.55;}
+  th{background:var(--navy);color:#fff;font-size:21px;}
+  td.k{background:var(--pale);font-weight:700;color:var(--navy);white-space:nowrap;}
+  td.k small{display:block;font-weight:400;color:var(--muted);font-size:18px;}
+  td.r{text-align:right;white-space:nowrap;}
+  tr.tot td{background:var(--navy);color:#fff;font-weight:700;font-size:26px;}
+  tr.sub td{background:var(--pale);}
+  tr.opt td{border-top:4px dashed var(--thin);}
+
+  /* Meta */
+  .ads{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .ad{border:2px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;background:#fff;}
+  .ad .top{display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:19px;font-weight:700;}
+  .ad .av{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;flex:none;}
+  .ad .cr{background:var(--pale);} .ad .cr img{width:100%;height:auto;}
+  .ad .cta{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-top:1px solid var(--line);font-size:16px;color:var(--muted);}
+  .ad .cta b{background:var(--pale);color:var(--navy);padding:2px 12px;border-radius:6px;white-space:nowrap;}
+  .ad .lbl{padding:10px 14px;font-size:21px;color:var(--navy);font-weight:700;border-top:2px dashed var(--line);line-height:1.5;}
+  .ad .lbl small{display:block;font-weight:400;color:var(--muted);font-size:17px;}
+  .ad .lbl .to{color:var(--org-deep);font-weight:700;}
+  .kp{background:#fff;border:2px solid var(--line);border-radius:18px;padding:22px 14px;text-align:center;}
+  .kp .n{font-size:58px;font-weight:700;color:var(--navy);line-height:1.15;}
+  .kp .n small{font-size:24px;font-weight:400;color:var(--muted);}
+  .kp .c{font-size:21px;color:var(--muted);margin-top:4px;}
+  .cv{border-radius:18px;padding:22px;text-align:center;}
+  .cv.lo{background:var(--pale);border:2px solid var(--line);} .cv.hi{background:var(--navy);color:#fff;}
+  .cv .k{font-size:22px;opacity:.9;} .cv .n{font-size:56px;font-weight:700;line-height:1.2;margin:4px 0;} .cv.lo .n{color:var(--navy);} .cv .f{font-size:19px;opacity:.85;}
+
+  /* 価格・スケジュール */
+  .hero{background:linear-gradient(135deg,var(--navy),var(--navy-soft));color:#fff;border-radius:20px;padding:26px;text-align:center;}
+  .hero .k{font-size:21px;letter-spacing:.1em;opacity:.9;} .hero .big{font-size:78px;font-weight:700;line-height:1.2;margin:6px 0 2px;} .hero .big small{font-size:28px;font-weight:400;margin-left:6px;}
+  .hero.o{background:#fff;color:var(--ink);border:3px dashed var(--org);}
+  .hero.o .k{color:var(--org-deep);font-weight:700;} .hero.o .big{color:var(--navy);font-size:60px;}
+  .sch{display:grid;grid-template-columns:200px repeat(5,1fr);border:2px solid var(--line);border-radius:14px;overflow:hidden;font-size:21px;}
+  .sch>div{padding:7px 14px;border-bottom:2px solid var(--line);border-right:2px solid var(--line);line-height:1.5;}
+  .sch>div:nth-child(6n){border-right:none;}
+  .sch .hd{background:var(--navy);color:#fff;font-weight:700;text-align:center;font-size:21px;}
+  .sch .rw{background:var(--pale);font-weight:700;color:var(--navy);}
+  .sch .bar{background:#CFE0F6;color:var(--navy-deep);font-weight:700;text-align:center;}
+  .sch .bar.o{background:#FFD9BF;color:#8A3A00;}
+  .sch .bar.n{background:#fff;}
+  .bill{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .bill .b{border-radius:18px;padding:20px;border:2px solid var(--line);background:#fff;text-align:center;}
+  .bill .b .m{font-size:22px;color:var(--navy-soft);font-weight:700;}
+  .bill .b .a{font-size:46px;font-weight:700;color:var(--navy);line-height:1.3;}
+  .bill .b .a small{font-size:21px;font-weight:400;color:var(--muted);}
+  .bill .b .d{font-size:19px;color:var(--muted);line-height:1.5;}
+  .bill .b.o{background:var(--org-pale);border-color:var(--org);}
+  .bill .b.t{background:var(--navy);border-color:var(--navy);} .bill .b.t *{color:#fff;}
+
+  /* 事例 */
+  .cs{background:#fff;border:2px solid var(--line);border-radius:18px;padding:22px 26px;font-size:22px;line-height:1.6;}
+  .cs h4{font-size:26px;color:var(--navy);margin:0 0 4px;}
+  .cs .pill{display:inline-block;background:var(--navy);color:#fff;font-size:18px;font-weight:700;border-radius:999px;padding:1px 16px;margin-bottom:8px;}
+  .cs .num{display:flex;gap:18px;margin-top:10px;}
+  .cs .num div{flex:1;background:var(--pale);border-radius:12px;padding:10px 8px;text-align:center;font-size:17px;color:var(--muted);line-height:1.4;}
+  .cs .num b{display:block;font-size:34px;color:var(--navy);line-height:1.2;}
+  .stp{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+  .stp div{background:var(--navy);color:#fff;border-radius:14px;padding:14px 12px;text-align:center;font-size:21px;line-height:1.4;}
+  .stp div b{display:block;font-size:24px;color:#FFD2B0;}
+
+  /* 操作UI */
+  #ui{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:14px;align-items:center;padding:10px;z-index:10;}
+  #ui button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;font-size:15px;padding:6px 18px;cursor:pointer;}
+  #ui button:hover{background:rgba(255,255,255,.28);}
+  #ui span{color:#fff;font-size:14px;min-width:70px;text-align:center;}
+  @media print{
+    @page{size:1920px 1080px;margin:0;}
+    html,body{overflow:visible;height:auto;background:#fff;}
+    #stage{position:static;transform:none !important;width:1920px;height:auto;}
+    .slide{display:flex !important;position:relative;width:1920px;height:1080px;page-break-after:always;}
+    #ui{display:none;}
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1 表紙 -->
+<section class="slide cover">
+  <div class="txt">
+    <div class="mark">ESTHETIC TSUSHIN WEB ／ SPECIAL SITE × META ADS</div>
+    <span class="eyebrow">記事タイアップご提案</span>
+    <h1>LPを持たない貴社の代わりに、<br>エス通WEBに<span>「役務対応の決済・分割導入」</span><br>特設サイトをつくります</h1>
+    <p class="sub">検索需要・AI検索（AIO）対策を設計に織り込んだ特設サイト × Meta広告運用提案との連動プラン</p>
+    <div class="meta">
+      <div><div class="k">ご提案先</div><div class="v">株式会社ミューチュアルトラスト 御中</div></div>
+      <div><div class="k">対象</div><div class="v">役務対応カード決済／ショッピングローン／機器分割ほか</div></div>
+      <div><div class="k">連動する提案</div><div class="v">Meta広告運用ご提案（9月16日付）</div></div>
+      <div><div class="k">作成日</div><div class="v">2026年10月14日</div></div>
+    </div>
+    <div class="brand">株式会社新東通信｜エステティック通信</div>
+  </div>
+  <div class="ph">
+    <img class="logo" src="img/logo.png" alt="株式会社ミューチュアルトラスト">
+    <img class="hero" src="img/main_v1.png" alt="役務も分割払いが可能です">
+    <span class="cap">画像出典：株式会社ミューチュアルトラスト 公式サイト</span>
+  </div>
+</section>
+
+<!-- 2 現状 -->
+<section class="slide">
+  <div class="sh"><span class="no">01</span><h2>貴社サイトの現状と、特設サイトで補うこと</h2></div>
+  <div class="sb">
+    <p class="lead">公式サイトは、サービス紹介・お客様の声・よくあるご質問・会社案内で構成された<b>通常のコーポレートサイト</b>です。広告や検索から初めて訪れる経営者にとって、比較検討に必要な情報が1ページに揃っていません。</p>
+    <div class="grid" style="grid-template-columns:1.35fr 1fr;align-items:start;">
+      <div>
+        <div class="fnd"><div class="n">1</div><div><b>悩みから入る入口がない</b>サービスが商品名（カード決済・ショッピングローン・j-Debit等）で並列に並び、「高単価コースが決まらない」「機器を一括で払っている」といった悩み起点の入口がありません。</div></div>
+        <div class="fnd"><div class="n">2</div><div><b>比較検討に必要な情報が少ない</b>手数料の目安・審査の考え方・導入までの期間などの記載が限られています。</div></div>
+        <div class="fnd"><div class="n">3</div><div><b>お客様の声が見つけにくい</b>5件（エステサロン4件・スクール1件）が掲載されていますが、悩みや導入の決め手が検索から拾われにくい構成です。</div></div>
+        <div class="fnd"><div class="n">4</div><div><b>案内情報の表記が揃っていない</b>受付時間がヘッダー（10:00〜19:00）とフッター画像（9:00〜18:00）で異なります。<span class="src">出典：公式サイト</span></div></div>
+      </div>
+      <div class="card org">
+        <h4>特設サイトで担うこと</h4>
+        <ul>
+          <li>広告・検索から来た方に、<b>サービスの全体像と選び方</b>を1ページで伝える</li>
+          <li>「<b>役務に対応できる</b>」という独自性を、第三者媒体の言葉で説明する</li>
+          <li>悩み別セクションで<b>広告クリエイティブと同じメッセージ</b>を受け止める</li>
+          <li>電話（<span class="nw">0120-77-9010</span>）・フォームへの<b>相談導線</b>を各所に置く</li>
+        </ul>
+        <p class="credit" style="margin-top:14px;">貴社サイトは変更せず、エス通WEB側に特設サイトを設ける形です。サイト改修のご負担はありません。</p>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>2</span></div>
+</section>
+
+<!-- 3 導線 -->
+<section class="slide">
+  <div class="sh"><span class="no">02</span><h2>全体の導線：広告・検索 → 特設サイト → ご相談</h2></div>
+  <div class="sb">
+    <p class="lead">Meta広告で認知・興味を獲得し、特設サイトで理解と納得を深め、電話・フォームでの相談につなげます。検索・AI検索からの流入も同じ特設サイトで受け止めます。</p>
+    <div class="flow">
+      <div class="nd"><div class="h">入口①<b>Meta広告（4案）</b></div><div class="im"><img src="img/creative1_A_施術カウンセリング実写.png" alt=""></div><div class="t">エス通の公式アカウントから、サロン経営者へ悩み別に配信（月額運用プランに連動）</div></div>
+      <div class="ar">›</div>
+      <div class="nd main"><div class="h">受け皿<b>エス通WEB 特設サイト</b></div><div class="im"><img src="img/main_v1.png" alt=""></div><div class="t">LPの代わりとなるハブページ。悩み別セクション・導入の流れ・お客様の声・FAQ・相談ボタンを1ページに集約</div></div>
+      <div class="ar">›</div>
+      <div class="nd"><div class="h">深掘り（オプション）<b>悩み別ガイド記事</b></div><div class="im"><img src="img/creative4_A_決済端末実写.png" alt=""></div><div class="t">各セクションから詳しい解説へ。検索・AI検索からの入口にもなる</div></div>
+      <div class="ar">›</div>
+      <div class="nd goal"><div class="h">ゴール<b>ご相談</b></div><div class="im"><img src="img/contact_img.png" alt=""></div><div class="t">電話・フォームから無料相談へ</div></div>
+    </div>
+    <div class="under">検索（Google）・AI検索（ChatGPT／Google AI Overviews等）からの流入も、特設サイトと悩み別記事で受け止めます</div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>3</span></div>
+</section>
+
+<!-- 4 特設サイト設計 -->
+<section class="slide">
+  <div class="sh"><span class="no">03</span><h2>特設サイトの設計：LPの代わりになる1ページ</h2></div>
+  <div class="sb">
+    <p class="lead">「エステサロンの分割払い・カード決済導入ガイド」として、「何ができるか→自店の場合はどれか→どう進むか→相談」の順で伝わる構成です。</p>
+    <div class="wf">
+      <div class="blk"><div class="i">FV</div><div><b>ファーストビュー</b>「役務（エステ・スクール）でも分割払いが可能です」を一文で提示。電話・フォームのボタンを常時表示</div></div>
+      <div class="blk key"><div class="i">A〜D</div><div><b>お悩み別の入口（4つ）</b>顧客分割／乗り換え／開業／機器導入。Meta広告4案の遷移先となり、広告の文言を見出しに使用</div></div>
+      <div class="blk"><div class="i">定義</div><div><b>「役務対応の決済・分割払い」とは</b>特定継続的役務を扱うサロンが導入できる仕組みを、定義文と図で説明</div></div>
+      <div class="blk"><div class="i">比較</div><div><b>サービス別の選び方</b>カード決済／ショッピングローン／j-Debit／自社クレジット支援／ビジネスカードを1つの表で整理</div></div>
+      <div class="blk"><div class="i">流れ</div><div><b>導入の流れ</b>相談→信販会社のご紹介・書類送付→加盟店審査→契約・開始（公式サイトの記載に準拠）</div></div>
+      <div class="blk"><div class="i">声</div><div><b>導入サロンの声</b>お客様の声（既掲載分）を悩み別に再編集。取材を追加する場合は同ページに増設</div></div>
+      <div class="blk"><div class="i">FAQ</div><div><b>よくある質問（8〜10問）</b>「役務でも審査に通る？」「個人経営でも導入できる？」等を1問1答で回答</div></div>
+      <div class="blk key"><div class="i">CTA</div><div><b>無料相談</b>電話（0120-77-9010）・フォーム。受付時間は正しい表記に統一して掲載</div></div>
+    </div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>4</span></div>
+</section>
+
+<!-- 5 AIO -->
+<section class="slide">
+  <div class="sh"><span class="no">04</span><h2>AI検索（AIO／AEO）・SEO対策として織り込む設計</h2></div>
+  <div class="sb">
+    <p class="lead">ChatGPTやGoogle AI Overviewsなど、AIが回答を組み立てる際に<b>引用されやすいページ構造</b>を、特設サイトと記事の双方に組み込みます。</p>
+    <div class="aio">
+      <div><b>定義文を冒頭に</b>各章の冒頭に「〜とは」の一文を置き、回答エンジンに引用されやすくします</div>
+      <div><b>FAQを自己完結に</b>1問ごとに前提を補わず読める回答にし、問い合わせにつながる疑問を網羅します</div>
+      <div><b>表・リストは本文化</b>画像ではなくテキストで掲載し、比較表は文章でも要点を補足します</div>
+      <div><b>一次情報と更新日</b>公式発表・法令に基づく記載、取材コメント、最終更新日を明記します</div>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:26px;">
+      <div class="card"><h4>見出しへのキーワード反映</h4>「エステ 分割払い 導入」「エステ カード決済 導入（役務対応）」等を、悩み別の見出しに自然に配置します。</div>
+      <div class="card"><h4>表現・法令の確認</h4>手数料・審査結果・効果の断定は避け、貴社の確認と法令に基づくチェックを経て確定します。「業界最安値」等は客観的な根拠が示せる場合に限り使用します。</div>
+    </div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>5</span></div>
+</section>
+
+<!-- 6 検索需要 -->
+<section class="slide">
+  <div class="sh"><span class="no">05</span><h2>検索需要の再調査：サロン経営者向けの情報は手薄</h2></div>
+  <div class="sb">
+    <div class="grid" style="grid-template-columns:1.7fr 1fr;align-items:start;">
+      <div>
+        <div class="rb head"><div>検索キーワード（サロン経営者の検索）</div><div>想定月間検索数（推定）</div><div style="text-align:right;">件/月</div><div style="text-align:center;">状況</div></div>
+        <div class="rb"><div class="kw">エステ カード決済 導入（役務対応）</div><div class="tr"><div class="sg thin" style="width:100%"></div></div><div class="val">20〜40</div><div class="st thin">手薄</div></div>
+        <div class="rb"><div class="kw">エステ 分割払い 導入 方法</div><div class="tr"><div class="sg gap" style="width:75%"></div></div><div class="val">15〜30</div><div class="st gap">空白</div></div>
+        <div class="rb"><div class="kw">美容機器 分割 導入（個人サロン）</div><div class="tr"><div class="sg thin" style="width:75%"></div></div><div class="val">10〜30</div><div class="st thin">手薄</div></div>
+        <div class="rb"><div class="kw">エステ 開業 カード決済</div><div class="tr"><div class="sg thin" style="width:62%"></div></div><div class="val">10〜25</div><div class="st thin">手薄</div></div>
+        <div class="rb"><div class="kw">決済 乗り換え 手数料 比較（サロン）</div><div class="tr"><div class="sg thin" style="width:62%"></div></div><div class="val">10〜25</div><div class="st thin">手薄</div></div>
+        <div class="rb"><div class="kw">エステ ショッピングローン 導入</div><div class="tr"><div class="sg gap" style="width:50%"></div></div><div class="val">10〜20</div><div class="st gap">空白</div></div>
+        <div class="rb"><div class="kw">特定継続的役務 クレジット 加盟店</div><div class="tr"><div class="sg thin" style="width:50%"></div></div><div class="val">10〜20</div><div class="st thin">手薄</div></div>
+        <div class="rb"><div class="kw">ミューチュアルトラスト（指名）</div><div class="tr"><div class="sg thin" style="width:25%"></div></div><div class="val">5〜10</div><div class="st thin">手薄</div></div>
+        <div class="legend"><span><i style="background:var(--gap)"></i>空白：サロン経営者向けの記事がほぼない</span><span><i style="background:var(--thin)"></i>手薄：汎用・消費者向けの記事のみ</span></div>
+      </div>
+      <div>
+        <div class="ins a"><b>消費者向け情報は豊富</b>検索結果の上位は、行政の注意喚起や相談事例など、利用者を守る情報が中心です。</div>
+        <div class="ins b"><b>事業者向けは空白が目立つ</b>サロン側が「役務でも分割払いを導入できるか」を調べる際に、最初に読める導入ガイドがありません。</div>
+        <div class="ins c"><b>特設サイトでの使い方</b>キーワードを悩み別の見出しに配置し、1ページ全体で受け止めます。</div>
+      </div>
+    </div>
+    <p class="credit">※棒の長さは最大値（40件）を100%とした相対比較。検索数は検索結果上位の内容・関連検索の広がりからの推定値です（検索結果の確認：2026年10月14日）。</p>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>6</span></div>
+</section>
+
+<!-- 7 ファネル -->
+<section class="slide">
+  <div class="sh"><span class="no">06</span><h2>検索経由の規模感：広告で流入を確保し、検索は資産として積み上げる</h2></div>
+  <div class="sb">
+    <p class="lead">8キーワード合計の想定検索数から、特設サイトへの検索流入と相談の規模を試算しました。検索経由は小さな規模のため、<b>Meta広告で流入を確保し、検索・AI検索は中長期の資産</b>として位置づけます。</p>
+    <div class="fun">
+      <div class="fb"><div class="l">狙うキーワードの月間検索数</div><div class="v">90〜200件</div><div class="f">8キーワード合計（推定）</div></div><div class="ar">›</div>
+      <div class="fb"><div class="l">特設サイトへの検索流入</div><div class="v">約14〜50PV</div><div class="f">月／×クリック率15〜25%</div></div><div class="ar">›</div>
+      <div class="fb"><div class="l">相談（検索経由）</div><div class="v">約0.1〜1.5件</div><div class="f">月／×1〜3%</div></div><div class="ar">›</div>
+      <div class="fb" style="background:#fff;"><div class="l">年間換算</div><div class="v">約2〜18件</div><div class="f">広告流入を除く</div></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:30px;">
+      <div class="card"><h4>検索・AI検索の役割</h4>公開後は更新日・FAQを随時見直し、引用・指名検索の増加とともに少しずつ流入が積み上がる資産になります。</div>
+      <div class="card org"><h4>広告の役割</h4>Meta広告（月額運用）で、公開直後から経営者層を特設サイトへ誘導します。規模感は次ページ以降（Meta連動）でご説明します。</div>
+    </div>
+    <div class="disclaimer">※検索数はGoogleキーワードプランナー等の実測値ではなく推定値です。試算は上位表示できた場合の参考値であり、成果を保証するものではありません。</div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>7</span></div>
+</section>
+
+<!-- 8 特設サイト記事案 -->
+<section class="slide">
+  <div class="sh"><span class="no">07</span><h2>特設サイト本体の構成案</h2></div>
+  <div class="sb">
+    <div class="ah"><div class="id">特設<br>サイト</div><div><div class="tg">HUB PAGE｜タイトル案</div><h3>エステサロンの分割払い・カード決済導入ガイド｜役務（特定継続的役務）でも導入できる？選び方と導入の流れ</h3></div></div>
+    <div class="ab">
+      <ol class="toc">
+        <li><b>エステサロンの決済・分割払い導入とは</b><span>役務を扱うサロンが導入できる仕組みの定義と全体像</span></li>
+        <li class="key"><b>なぜ、エステは決済・分割払いの導入が難しいと言われるのか</b><span>特定商取引法・割賦販売法の背景と加盟店審査を、事業者の目線で整理</span></li>
+        <li class="key"><b>お悩み別｜あなたのサロンに合う導入方法</b><span>A 顧客分割／B 見直し／C 開業準備／D 機器導入</span></li>
+        <li><b>サービス別の比較表</b><span>カード決済・ショッピングローン・j-Debit・自社クレジット支援・ビジネスカード</span></li>
+        <li><b>導入の流れと、審査から開始までの期間</b><span>相談→紹介→申込書類→加盟店審査→契約・開始</span></li>
+        <li><b>導入サロンの声／よくある質問／無料相談</b><span>エステサロン・スクールの声、1問1答FAQ、電話・フォーム</span></li>
+      </ol>
+      <div>
+        <div class="mb"><div class="mk">狙うキーワード</div><span class="kwt">エステ 分割払い 導入</span><span class="kwt">エステ カード決済 導入</span><span class="kwt">エステ ショッピングローン 導入</span><span class="kwt">特定継続的役務 クレジット</span><span class="kwt">ミューチュアルトラスト</span></div>
+        <div class="mb"><div class="mk">取材・制作内容</div>貴社へのヒアリング（審査・導入の実際）と、導入サロン1〜2店舗の取材をご相談したいと考えています。取材先のご紹介をお願いします。</div>
+        <div class="mb"><div class="mk">この記事の役割</div>LPの代わりとなる1ページ。Meta広告・検索・AI検索のいずれから来ても、ここで全体像をつかんでご相談につながります。</div>
+      </div>
+    </div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>8</span></div>
+</section>
+
+<!-- 9 悩み別記事 -->
+<section class="slide">
+  <div class="sh"><span class="no">08</span><h2>悩み別ガイド記事（オプション）｜Meta広告4案と1対1で対応</h2></div>
+  <div class="sb">
+    <table>
+      <thead><tr><th>セグメント</th><th>記事タイトル案</th><th>狙うキーワード</th><th>対応する広告</th></tr></thead>
+      <tbody>
+        <tr><td class="k">A 顧客分割提案<small>配分30%・最優先</small></td><td>高単価コースが「その場で決まらない」サロンへ｜ショッピングローンで提案しやすくする仕組み</td><td>エステ ショッピングローン 導入／エステ 分割払い 導入</td><td>① 「良いご提案」が、その場で決まらない。</td></tr>
+        <tr><td class="k">D 機器導入<small>配分30%・最優先</small></td><td>美容機器を一括で買っていませんか？初期費用を抑える分割購入の考え方</td><td>美容機器 分割 導入／エステ 機器 ローン</td><td>④ その機器、一括で払っていませんか？</td></tr>
+        <tr><td class="k">B 乗り換え<small>配分20%</small></td><td>決済契約の見直しポイント｜手数料・条件を比べるチェックリスト</td><td>決済 乗り換え 手数料 比較／エステ 決済 見直し</td><td>② その決済契約、最後に見直したのはいつですか？</td></tr>
+        <tr><td class="k">C 開業準備<small>配分20%</small></td><td>エステサロン開業前に整える決済｜個人経営・開業直後でも相談できること</td><td>エステ 開業 カード決済／個人サロン 分割払い</td><td>③ 決済の準備、開業リストに入っていますか？</td></tr>
+      </tbody>
+    </table>
+    <div class="disclaimer">※「成約率が上がる」「必ず審査に通る」などの断定は使わず、「提案しやすくなる」「ご相談いただけます」等の表現に統一します。<br>※機器分割の記事では、貴社サービスの正式な名称（公式サイトでは「クレディセゾンビジネスカード導入支援」「自社クレジット支援」等）を確認のうえ、記載を確定します。</div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>9</span></div>
+</section>
+
+<!-- 10 Meta連動 -->
+<section class="slide">
+  <div class="sh"><span class="no">09</span><h2>Meta広告との連動：クリエイティブ4案の遷移先を特設サイトへ</h2></div>
+  <div class="sb">
+    <div class="ads">
+      <div class="ad"><div class="top"><div class="av">エス通</div>エステティック通信</div><div class="cr"><img src="img/creative1_A_施術カウンセリング実写.png" alt=""></div><div class="cta"><span>広告</span><b>詳しくはこちら</b></div><div class="lbl">① 分割提案力訴求<small>SEGMENT A・最優先</small><small class="to">遷移先：特設サイト「A」</small></div></div>
+      <div class="ad"><div class="top"><div class="av">エス通</div>エステティック通信</div><div class="cr"><img src="img/creative2_乗り換え訴求.png" alt=""></div><div class="cta"><span>広告</span><b>詳しくはこちら</b></div><div class="lbl">② 乗り換え訴求<small>SEGMENT B</small><small class="to">遷移先：特設サイト「B」</small></div></div>
+      <div class="ad"><div class="top"><div class="av">エス通</div>エステティック通信</div><div class="cr"><img src="img/creative3_新規開業者向け.png" alt=""></div><div class="cta"><span>広告</span><b>詳しくはこちら</b></div><div class="lbl">③ 新規開業者向け<small>SEGMENT C</small><small class="to">遷移先：特設サイト「C」</small></div></div>
+      <div class="ad"><div class="top"><div class="av">エス通</div>エステティック通信</div><div class="cr"><img src="img/creative4_A_決済端末実写.png" alt=""></div><div class="cta"><span>広告</span><b>詳しくはこちら</b></div><div class="lbl">④ 機器分割購入訴求<small>SEGMENT D・最優先</small><small class="to">遷移先：特設サイト「D」</small></div></div>
+    </div>
+    <p class="credit">※クリエイティブは9月16日のご提案資料に掲載した制作案（画像はAI生成を含む）です。配信前に画像・文言を貴社にご確認いただきます。①・④は実写ベースと0→1生成のA/Bテスト用に各2パターンを用意しています。</p>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>10</span></div>
+</section>
+
+<!-- 11 配信規模 -->
+<section class="slide">
+  <div class="sh"><span class="no">10</span><h2>配信規模の試算：広告からの特設サイト訪問と相談</h2></div>
+  <div class="sb">
+    <p class="lead">9月16日提案と同じ前提（月間広告費70,000円・エス通実績平均 CPM 908円／CPC 52円／CTR 1.78%）での試算です。</p>
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="kp"><div class="n">約77,000<small>回</small></div><div class="c">想定インプレッション／月</div></div>
+      <div class="kp"><div class="n">約41,600<small>人</small></div><div class="c">想定リーチ／月</div></div>
+      <div class="kp"><div class="n">約1,350<small>件</small></div><div class="c">想定クリック＝特設サイト訪問／月</div></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:24px;">
+      <div class="cv lo"><div class="k">特設サイト訪問の0.5%が相談</div><div class="n">約7件／月</div><div class="f">1,350 × 0.5%</div></div>
+      <div class="cv hi"><div class="k">特設サイト訪問の1%が相談</div><div class="n">約14件／月</div><div class="f">1,350 × 1%</div></div>
+    </div>
+    <div class="disclaimer">※試算値であり、成果を保証するものではありません。相談率0.5〜1%は、記事・ページ訪問に対する一般的な想定値です。<br>※特設サイトへの変更が、フォーム直遷移に比べてどの程度の違いを生むかは、配信開始後のクリックから相談までの割合を月次レポートで比較してご報告します。</div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>11</span></div>
+</section>
+
+<!-- 12 プラン -->
+<section class="slide">
+  <div class="sh"><span class="no">11</span><h2>プラン・お見積り</h2></div>
+  <div class="sb">
+    <div class="grid" style="grid-template-columns:1.55fr 1fr;align-items:start;">
+      <table>
+        <thead><tr><th>項目</th><th>内容</th><th style="text-align:right;">金額（税別）</th></tr></thead>
+        <tbody>
+          <tr><td class="k">① 特設サイト制作<br>（基本プラン）</td><td>エス通WEB内の特設ページ 1本<br><span style="color:var(--muted);font-size:19px;">構成・取材・原稿・デザイン・コーディング・表現チェック・AIO／SEO設計込み</span></td><td class="r">150,000円<br><span style="font-size:19px;color:var(--muted);">（税込165,000円）</span></td></tr>
+          <tr><td class="k">② Meta広告運用</td><td>広告費70,000円＋運用費30,000円<br><span style="color:var(--muted);font-size:19px;">9月16日ご提案のプラン／最低3か月を推奨</span></td><td class="r">100,000円／月<br><span style="font-size:19px;color:var(--muted);">（税込110,000円）</span></td></tr>
+          <tr class="opt"><td class="k">悩み別ガイド記事<span class="tag opt">オプション</span></td><td>A・B・C・Dのうち1本あたり<br><span style="color:var(--muted);font-size:19px;">優先度の高いA・Dから、段階的な追加も可能です</span></td><td class="r">+45,000円／本</td></tr>
+        </tbody>
+      </table>
+      <div class="grid" style="gap:16px;">
+        <div class="hero"><div class="k">① 特設サイト制作（基本プラン）</div><div class="big">150,000<small>円</small></div><div>税別／税込 165,000円</div></div>
+        <div class="hero o"><div class="k">② Meta広告運用</div><div class="big">100,000<small>円／月</small></div><div style="color:var(--muted)">税別／税込 110,000円</div></div>
+      </div>
+    </div>
+    <div class="disclaimer">※特設サイト・記事の掲載期間は無期限です（エス通WEBの運営が継続する限り）。※取材は導入サロン1〜2店舗（都内近郊）を想定しています。※悩み別ガイド記事4本すべてを追加した場合、記事分は180,000円（税込198,000円）です。</div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>12</span></div>
+</section>
+
+<!-- 13 スケジュール・請求 -->
+<section class="slide">
+  <div class="sh"><span class="no">12</span><h2>スケジュールと請求月・金額（想定）</h2></div>
+  <div class="sb">
+    <p class="lead">10月〜11月で特設サイトを制作し、<b>11月末に制作費をご請求</b>。12月から<b>Meta広告を月額で運用</b>し、12月末請求以降、毎月のご請求となります。</p>
+    <div class="sch">
+      <div class="hd">項目</div><div class="hd">10月（後半）</div><div class="hd">11月（前半）</div><div class="hd">11月（後半）</div><div class="hd">12月</div><div class="hd">1月以降</div>
+      <div class="rw">ご発注・ヒアリング・取材</div><div class="bar">発注／ヒアリング／取材</div><div class="bar n"></div><div class="bar n"></div><div class="bar n"></div><div class="bar n"></div>
+      <div class="rw">構成・原稿・貴社確認</div><div class="bar n"></div><div class="bar">構成・原稿／貴社確認・法令チェック</div><div class="bar n"></div><div class="bar n"></div><div class="bar n"></div>
+      <div class="rw">特設サイト公開</div><div class="bar n"></div><div class="bar n"></div><div class="bar">デザイン・公開／広告クリエイティブ入稿</div><div class="bar n"></div><div class="bar n"></div>
+      <div class="rw">Meta広告 運用</div><div class="bar n"></div><div class="bar n"></div><div class="bar n"></div><div class="bar o">配信開始／月次レポート</div><div class="bar o">継続運用・改善</div>
+    </div>
+    <p class="lab" style="margin-top:26px;">請求月・金額の想定（税別）</p>
+    <div class="bill">
+      <div class="b"><div class="m">11月末請求</div><div class="a">150,000円<small>（税込165,000円）</small></div><div class="d">特設サイト制作費（基本プラン）</div></div>
+      <div class="b o"><div class="m">12月末請求</div><div class="a">100,000円<small>（税込110,000円）</small></div><div class="d">Meta広告運用 1か月目</div></div>
+      <div class="b o"><div class="m">1月末請求以降</div><div class="a">100,000円<small>／月</small></div><div class="d">Meta広告運用（毎月）</div></div>
+      <div class="b t"><div class="m">12月〜2月（3か月）まで</div><div class="a">450,000円<small>（税別）</small></div><div class="d">制作費150,000円＋運用100,000円×3か月</div></div>
+    </div>
+    <div class="disclaimer">※オプションの悩み別ガイド記事を追加する場合は、追加分（1本45,000円）を11月末または12月末のいずれかに計上するかをご指定ください。※スケジュールは10月中にご発注いただいた場合の想定で、取材先の調整状況により前後します。</div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>13</span></div>
+</section>
+
+<!-- 14 確認事項 -->
+<section class="slide">
+  <div class="sh"><span class="no">13</span><h2>制作にあたり、貴社にご確認したい事項</h2></div>
+  <div class="sb">
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="card"><h4>サービス名称・範囲</h4>機器分割（Meta提案では「ビジネスクレジット」）の正式な名称、提携先、対象となる機器の範囲をご教示ください。</div>
+      <div class="card"><h4>掲載できる情報</h4>手数料の目安、審査から開始までの期間、導入実績数等、公開可能な数値・事実の範囲をご確認ください。</div>
+      <div class="card"><h4>基本情報・取材</h4>受付時間の正しい表記、お客様の声の追加取材、取材可能な加盟店のご紹介をお願いします。</div>
+    </div>
+    <p class="lab" style="margin-top:30px;">ご発注後の進め方</p>
+    <div class="stp">
+      <div><b>STEP 1</b>ご発注<br>オプションの有無・計上月</div>
+      <div><b>STEP 2</b>ヒアリング・取材<br>取材先のご紹介</div>
+      <div><b>STEP 3</b>原稿確認<br>貴社確認・法令チェック</div>
+      <div><b>STEP 4</b>特設サイト公開<br>広告の遷移先を設定</div>
+      <div><b>STEP 5</b>Meta配信・月次レポート<br>PV・クリック・相談数</div>
+    </div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>14</span></div>
+</section>
+
+<!-- 15 事例① -->
+<section class="slide">
+  <div class="sh"><span class="no">事例</span><h2>エス通WEB・SNSでの施策事例（導入型商材の目的別）</h2></div>
+  <div class="sb">
+    <p class="lead">エステティック通信（発行部数20,000部／月）の誌面・WEB・SNS・Metaを組み合わせた、導入型商材の施策事例です。<b>目的を媒体ごとに分けて設計</b>しています。</p>
+    <div class="grid" style="grid-template-columns:1fr 1fr;">
+      <div class="cs"><span class="pill">対談記事×WEB×Meta</span><h4>老舗取扱いサロンの活性化＋リード獲得</h4>
+        誌面は興味喚起、WEB・SNSはリード獲得と、媒体ごとに目的を分けて設計。
+        <div class="num"><div><b>15件</b>獲得リード</div><div><b>2件</b>成約</div><div><b>約600%</b>ROAS（1年間）</div></div>
+        <div style="font-size:18px;color:var(--muted);margin-top:8px;">リーチ：誌面20,000サロン／WEB 2,000名／Meta 40,000名</div></div>
+      <div class="cs"><span class="pill">クロスメディア横断</span><h4>新商品の認知拡大＋展示会の体験誘致</h4>
+        雑誌とWEBで全体認知と掲載実績をつくり、WEB・SNS・LINEで体験予約を獲得。
+        <div class="num"><div><b>50→47名</b>体験予約→来訪</div><div><b>5件</b>会期中成約</div><div><b>500%以上</b>ROAS</div></div>
+        <div style="font-size:18px;color:var(--muted);margin-top:8px;">施策費用：500,000円〜／ケース転用：キャンペーン拡販・セミナー誘致など</div></div>
+    </div>
+    <div class="card org" style="margin-top:22px;"><h4>本提案への示唆</h4>「雑誌・WEBで信頼をつくり、WEB・Meta・SNSで相談を獲得する」役割分担は、<b>特設サイト（信頼・理解）× Meta広告（獲得）</b>の構成と同じ考え方です。</div>
+    <p class="credit">※エステティック通信 成功事例集（取引先名は非公開）より。成果は施策ごとの実績であり、同様の結果を保証するものではありません。</p>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>15</span></div>
+</section>
+
+<!-- 16 事例② -->
+<section class="slide">
+  <div class="sh"><span class="no">事例</span><h2>決済端末事業者様：記事タイアップ × Meta広告の事例</h2></div>
+  <div class="sb">
+    <div class="grid" style="grid-template-columns:1fr 1fr;align-items:start;">
+      <div class="cs"><span class="pill">エス通WEB 記事タイアップ（2026年8月公開）</span>
+        <h4>「その決済端末で大丈夫？特定継続的役務とおすすめ決済」</h4>
+        <ul style="margin:6px 0 0;padding-left:26px;font-size:21px;">
+          <li>特定継続的役務の3条件（政令業種・1か月超・5万円超）を、サロン向けに解説</li>
+          <li>汎用決済の規約違反・入金保留リスクと、分割払いのメリットを整理</li>
+          <li>強み3点の紹介、Q&amp;A（他社で審査に落ちた場合、既存決済との併用 等）</li>
+          <li>記事冒頭と末尾に、無料相談への導線を設置</li>
+        </ul>
+      </div>
+      <div class="cs"><span class="pill">Meta広告（消化100,000円・2クリエイティブ）</span>
+        <h4>記事と資料請求ページ（LP）へ配信</h4>
+        <div class="num"><div><b>486</b>リンククリック</div><div><b>1.7〜2.0%</b>クリック率</div><div><b>6件</b>実問い合わせ</div><div><b>約16,700円</b>1件あたり</div></div>
+        <div style="font-size:20px;margin-top:12px;">届いた層：35〜54歳が73%、女性86%、Instagram83%、44都道府県</div>
+      </div>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:20px;">
+      <div class="card"><h4>うまくいった点</h4><ul><li>10万円の少額でも、経営者層から実問い合わせを獲得</li><li>「コース契約×決済」のテーマへの関心が高く、クリック率1.7〜2.0%</li><li>CTA付きのベネフィット訴求が、LP誘導で機能</li></ul></div>
+      <div class="card"><h4>改善した点（本提案に反映）</h4><ul><li>計測は「LP表示」ではなく<b>問い合わせ完了</b>を成果とする</li><li>記事経由は配信量が小さく評価が不十分だったため、特設サイトを受け皿に集約</li><li>クリエイティブは3本以上で訴求角度を比較（本提案は4案）</li></ul></div>
+    </div>
+    <p class="credit">※記事・広告ともエス通での実施事例です。事業者名は非公開とし、数値は実施結果（問い合わせ数は事業者からの報告値）です。成果を保証するものではありません。</p>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>16</span></div>
+</section>
+
+<!-- 17 まとめ -->
+<section class="slide">
+  <div class="sh"><span class="no">まとめ</span><h2>事例を踏まえた、本提案のポイント</h2></div>
+  <div class="sb">
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="card org"><h4>① 受け皿を1つに集約</h4>広告・検索・AI検索のすべてを、LPの代わりとなる特設サイトで受け止め、相談までの導線を短くします。</div>
+      <div class="card org"><h4>② 成果を正しく測る</h4>電話・フォームでの相談完了を成果として定め、月次レポートで広告→特設サイト→相談の流れを可視化します。</div>
+      <div class="card org"><h4>③ 小さく始めて広げる</h4>基本プランで特設サイトを公開し、反応の良いセグメントから悩み別記事を段階的に追加できます。</div>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:30px;">
+      <div class="hero"><div class="k">11月末請求｜特設サイト制作</div><div class="big">150,000<small>円（税別）</small></div></div>
+      <div class="hero o"><div class="k">12月末請求以降｜Meta広告運用</div><div class="big">100,000<small>円／月（税別）</small></div></div>
+    </div>
+    <div class="disclaimer">ご不明点・条件のご相談はお気軽にお問い合わせください。<br>本書の検索数・PV・相談数はすべて試算・参考値であり、成果を保証するものではありません。画像出典：株式会社ミューチュアルトラスト 公式サイト／Meta広告運用ご提案（2026年9月16日付）のクリエイティブ案。</div>
+  </div>
+  <div class="sf"><span>株式会社新東通信｜エステティック通信</span><span>17</span></div>
+</section>
+
+</div>
+<div id="ui"><button id="prev">‹ 前へ</button><span id="cnt"></span><button id="next">次へ ›</button><button id="fs">全画面</button></div>
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')), cur=0, stage=document.getElementById('stage');
+  function fit(){var s=Math.min(innerWidth/1920,(innerHeight-40)/1080);stage.style.transform='translate(-50%,-50%) scale('+s+')';}
+  function show(n){cur=Math.max(0,Math.min(slides.length-1,n));slides.forEach(function(el,i){el.classList.toggle('on',i===cur);});
+    document.getElementById('cnt').textContent=(cur+1)+' / '+slides.length;
+    try{history.replaceState(null,'','#'+(cur+1));}catch(e){}}
+  addEventListener('resize',fit);
+  addEventListener('keydown',function(e){
+    if(['ArrowRight','PageDown',' ','Enter'].indexOf(e.key)>-1){e.preventDefault();show(cur+1);}
+    else if(['ArrowLeft','PageUp','Backspace'].indexOf(e.key)>-1){e.preventDefault();show(cur-1);}
+    else if(e.key==='Home')show(0); else if(e.key==='End')show(slides.length-1);});
+  document.getElementById('prev').onclick=function(){show(cur-1);};
+  document.getElementById('next').onclick=function(){show(cur+1);};
+  document.getElementById('fs').onclick=function(){var d=document.documentElement;(document.fullscreenElement?document.exitFullscreen():d.requestFullscreen&&d.requestFullscreen());};
+  var h=parseInt((location.hash||'').slice(1),10);
+  fit();show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>
